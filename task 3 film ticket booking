@@ -1,0 +1,74 @@
+# Film Ticket Booking System
+movies = {
+    "RRR": 300,
+    "Bhola": 160,
+    "Tu juthi mein makkar ": 240,
+    "Selfie": 120,
+    "Pathaan": 240
+}
+
+showtimes = ["10:00", "12:00", "2:00", "4:00", "6:00", "9:00"]
+booked_seats = []
+def display_movies():
+    print("Movies:")
+    for movie, price in movies.items():
+        print(f"{movie}: {price}")
+def display_showtimes():
+    print("Showtimes:")
+    for showtime in showtimes:
+        print(showtime)
+def book_ticket(movie, showtime, seat):
+    if movie in movies and showtime in showtimes:
+        if seat not in booked_seats:
+            price = movies[movie]
+            print(f"You have booked a ticket for {movie} at {showtime}, seat {seat}, for ${price}.")
+            booked_seats.append(seat)
+        else:
+            print(f"Seat {seat} is already booked.")
+    else:
+        print("Invalid movie or showtime.")
+def cancel_ticket(movie, showtime, seat):
+    if seat in booked_seats:
+        booked_seats.remove(seat)
+        print(f"You have cancelled your ticket for {movie} at {showtime}, seat {seat}.")
+    else:
+        print(f"Seat {seat} is not booked.")
+def display_booking_records():
+    if booked_seats:
+        print("Booking records:")
+        for seat in booked_seats:
+            print(seat)
+    else:
+        print("No booking records found.")
+while True:
+    print("Menu:")
+    print("1. Display  movies and prices")
+    print("2. Display showtimes")
+    print("3. Book a ticket")
+    print("4. Cancel a ticket")
+    print("5. Display booking records")
+    print("6. Exit")
+    choice = input("Enter your choice (1-6): ")
+
+    if choice == "1":
+        display_movies()
+    elif choice == "2":
+        display_showtimes()
+    elif choice == "3":
+        movie = input("Enter the movie name: ")
+        showtime = input("Enter the showtime: ")
+        seat = input("Enter the seat number: ")
+        book_ticket(movie, showtime, seat)
+    elif choice == "4":
+        movie = input("Enter the movie name: ")
+        showtime = input("Enter the showtime: ")
+        seat = input("Enter the seat number: ")
+        cancel_ticket(movie, showtime, seat)
+    elif choice == "5":
+        display_booking_records()
+    elif choice == "6":
+        break
+    else:
+        print("Invalid choice sry we cannot book a ticket")
+
+
